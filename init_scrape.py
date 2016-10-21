@@ -49,35 +49,33 @@ if __name__ == '__main__':
     # Code for Illinois Jobs Link Login - TODO: Fix login issues. (Try utf-8
     # encoding??)
 
-    # soup = BeautifulSoup(session.get(SEARCH_URL).content, "html.parser")
-    # inputs = soup.find_all('input')
-    # token = ''
-    # for t in inputs:
-    #     try:
-    #         if t['name'] == 'authenticity_token':
-    #             token = t['value']
-    #             break
-    #     except KeyError as e:
-    #         pass
-    # # print(soup.prettify().encode('utf-8'))
-    # print(token)
+    soup = BeautifulSoup(session.get(SEARCH_URL).content, "html.parser")
+    inputs = soup.find_all('input')
+    token = ''
+    for t in inputs:
+        try:
+            if t['name'] == 'authenticity_token':
+                token = t['value']
+                break
+        except KeyError as e:
+            pass
+    # print(soup.prettify().encode('utf-8'))
+    print(token)
 
-    # login_data = dict(v_username=USER_NAME,
-    #                   v_password=PASSWORD,
-    #                   authenticity_token=token,
-    #                   FormName=0,
-    #                   fromlogin=1,
-    #                   button='Log+in')
-    # login_data['utf-8'] = '&#x2713;'
+    login_data = dict(v_username=USER_NAME,
+                      v_password=PASSWORD,
+                      authenticity_token=token
+                      )
+    login_data['utf-8'] = '&#x2713;'
 
-    # r = session.post(LOGIN_URL, data=login_data)
+    r = session.post(LOGIN_URL, data=login_data)
 
-    # print(r.content)
+    print(r.content)
 
     scrape()
 
     # Print our entries in the database
-    for row in c.execute('SELECT * FROM listings'):
-        print row
+    # for row in c.execute('SELECT * FROM listings'):
+    #     print row
 
     c.close()
