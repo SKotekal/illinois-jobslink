@@ -33,6 +33,12 @@ def scrape():
             job_url = u['href']  # The href part of the tag will have the url
             name = u.string  # The name will be in the string part of the a tag
             id_num = u.string[u.string.find('(') + 1:u.string.find(')')]
+
+            print(job_url)
+
+            r = session.get('https://illinoisjoblink.illinois.gov' + job_url)
+            s = BeautifulSoup(r.content, "html.parser")
+
             # Insert the job listing into the database (only the name and url
             # have been implemented at this point)
             c.execute(
