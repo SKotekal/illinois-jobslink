@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Illinois JobsLink Project
+=======
+# Illinois JobsLink project
+>>>>>>> e3b1eb8ce22ffd435804518a7d974942314f4bb4
 Build Illinois Jobslink scraper, API, and front end. 
 
 
